@@ -1,0 +1,7 @@
+name: FactionWars
+version: ${project.version}
+main: me.mrfishcakes.factionwars.FactionWars
+api-version: 1.13
+depend: [FactionsUUID]
+authors: [MrFishCakes]
+description: Allow factions to compete on a large or small scale
