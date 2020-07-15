@@ -126,11 +126,7 @@ public final class LibraryLoader {
     }
 
     private static File getLibFolder() {
-        File pluginDataFolder = FactionWars.getInstance().getDataFolder();
-        File pluginsDir = pluginDataFolder.getParentFile();
-
-        File helperDir = new File(pluginsDir, "helper");
-        File libs = new File(helperDir, "libraries");
+        File libs = new File(FactionWars.getInstance().getDataFolder(), "libs");
         libs.mkdirs();
         return libs;
     }
