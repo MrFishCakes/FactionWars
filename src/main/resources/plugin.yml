@@ -1,6 +1,7 @@
 name: FactionWars
 version: ${project.version}
 main: me.mrfishcakes.factionwars.FactionWars
+prefix: FWars
 api-version: 1.13
 depend: [FactionsUUID]
 authors: [MrFishCakes]
