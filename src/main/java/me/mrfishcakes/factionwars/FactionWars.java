@@ -20,8 +20,24 @@ public final class FactionWars extends JavaPlugin {
     private static FactionWars instance;
     private Config config;
 
+    /**
+     * Fetch the class instance
+     *
+     * @return Class instance
+     */
     public static FactionWars getInstance() {
         return instance;
+    }
+
+    /**
+     * Get the main {@link Config config} file for the plugin
+     *
+     * @return Main config file
+     * @see Config
+     */
+    @NotNull
+    public Config getMainConfig() {
+        return config;
     }
 
     @Override
@@ -47,10 +63,5 @@ public final class FactionWars extends JavaPlugin {
     public void onDisable() {
         config = null;
         instance = null;
-    }
-
-    @NotNull
-    public Config getMainConfig() {
-        return config;
     }
 }
