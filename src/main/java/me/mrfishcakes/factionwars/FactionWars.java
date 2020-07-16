@@ -17,17 +17,7 @@ import java.io.File;
         repo = @Repository(url = "https://jitpack.io"))
 public final class FactionWars extends JavaPlugin {
 
-    private static FactionWars instance;
     private Config config;
-
-    /**
-     * Fetch the class instance
-     *
-     * @return Class instance
-     */
-    public static FactionWars getInstance() {
-        return instance;
-    }
 
     /**
      * Get the main {@link Config config} file for the plugin
@@ -49,8 +39,6 @@ public final class FactionWars extends JavaPlugin {
             return;
         }
 
-        instance = this;
-
         LibraryLoader.loadAll(this);
         File configFile = new File(getDataFolder(), "config.yml");
         config = LightningBuilder.fromPath("config", configFile.getAbsolutePath())
@@ -62,6 +50,5 @@ public final class FactionWars extends JavaPlugin {
     @Override
     public void onDisable() {
         config = null;
-        instance = null;
     }
 }

@@ -87,7 +87,8 @@ public final class LibraryLoader {
     }
 
     public static void load(Dependency d) {
-        FactionWars.getInstance().getLogger().info(
+        FactionWars plugin = FactionWars.getPlugin(FactionWars.class);
+        plugin.getLogger().info(
                 String.format("Loading dependency %s:%s:%s from %s", d.getGroupId(), d.getArtifactId(),
                         d.getVersion(), d.getRepoUrl()));
         String name = d.getArtifactId() + "-" + d.getVersion();
@@ -96,7 +97,7 @@ public final class LibraryLoader {
         if (!saveLocation.exists()) {
 
             try {
-                FactionWars.getInstance().getLogger().info("Dependency '" + name +
+                plugin.getLogger().info("Dependency '" + name +
                         "' is not already in the libraries folder. Attempting to download...");
                 URL url = d.getUrl();
 
@@ -108,25 +109,25 @@ public final class LibraryLoader {
                 e.printStackTrace();
             }
 
-            FactionWars.getInstance().getLogger().info("Dependency '" + name + "' successfully downloaded.");
+            plugin.getLogger().info("Dependency '" + name + "' successfully downloaded.");
         }
 
         if (!saveLocation.exists()) {
             throw new RuntimeException("Unable to download dependency: " + d.toString());
         }
 
-        URLClassLoader classLoader = (URLClassLoader) FactionWars.getInstance().getClass().getClassLoader();
+        URLClassLoader classLoader = (URLClassLoader) plugin.getClass().getClassLoader();
         try {
             ADD_URL_METHOD.invoke(classLoader, saveLocation.toURI().toURL());
         } catch (Exception e) {
             throw new RuntimeException("Unable to load dependency: " + saveLocation.toString(), e);
         }
 
-        FactionWars.getInstance().getLogger().info("Loaded dependency '" + name + "' successfully.");
+        plugin.getLogger().info("Loaded dependency '" + name + "' successfully.");
     }
 
     private static File getLibFolder() {
-        File libs = new File(FactionWars.getInstance().getDataFolder(), "libs");
+        File libs = new File(FactionWars.getPlugin(FactionWars.class).getDataFolder(), "libs");
         libs.mkdirs();
         return libs;
     }
